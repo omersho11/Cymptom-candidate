@@ -1,4 +1,3 @@
-import typing
 from dataclasses import dataclass
 from constants import RAM_COMPARISON_TABLE
 import datetime
@@ -32,6 +31,7 @@ class OSInfo:
 
 @dataclass
 class NetworkInfo:
+    from typing import List
     private_ip_address: str
     private_dns_name: str
     mac_address: str
@@ -39,7 +39,8 @@ class NetworkInfo:
     interface_type: str
     interface_id: str
     status: str
-    groups: list
+    groups: List[dict]
+    # in versions earlier than 3.9 the list var must be imported as it is not implemented until 3.9
 
 
 @dataclass
@@ -55,10 +56,10 @@ class SpecsInfo:
 
 @dataclass
 class Instance:
-    id_info: type(IDInfo)
-    os_info: type(OSInfo)
-    network_info: type(NetworkInfo)
-    specs_info: type(SpecsInfo)
+    id_info: IDInfo
+    os_info: OSInfo
+    network_info: NetworkInfo
+    specs_info: SpecsInfo
     status: str
     keyname_description: str
     launch_time: str
@@ -77,9 +78,6 @@ class InstancesInformation:
         self.information_dictionary: dict = information_dictionary
         self.instances = {}
         self._extract_information()
-
-    def __repr__(self):
-        return str(self.instances)
 
     def _extract_information(self):
         """

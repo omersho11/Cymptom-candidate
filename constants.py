@@ -4,7 +4,11 @@ This file contains constants that are used throughout the code
 in order to not pollute the code all the hard coded variables are located here
 """
 DEFAULT_REGION = 'us-east-2'
-DEFAULT_FILE_PATH = os.path.join(os.getcwd(),'test_data_file.txt')
+DEFAULT_DATA_FILE_PATH = os.path.join(os.getcwd(), 'test_data_file.txt')
+CREDS_FILE_PATH = os.path.join(os.path.expanduser('~'), '.aws\\credentials')
+LOG_FILE_PATH = os.path.join(os.getcwd(), 'log.txt')
+LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s | %(message)s'
+
 # note that the RAM_COMPARISON_TABLE is not complete
 # there are over 100 different machine types, this table is a general containing the main machine types
 RAM_COMPARISON_TABLE = {'t2.nano': '0.5GB',

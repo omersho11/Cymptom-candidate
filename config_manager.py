@@ -1,11 +1,11 @@
 import configparser
-import os
+from constants import CREDS_FILE_PATH
 
 
 class ConfigManager(object):
-    def __init__(self):
+    def __init__(self, creds_file_path=CREDS_FILE_PATH):
         self.config = configparser.ConfigParser()
-        self.path = os.path.join(os.path.expanduser('~'), '.aws\\credentials')
+        self.path = creds_file_path
         self.config.read(self.path)
 
     def get_creds(self):
