@@ -8,6 +8,17 @@ logger = Logger().logger
 
 class TestClass(TestCase):
 
+    def test_class_setup(self):
+        """
+        tests if the class setup is successful
+        """
+        try:
+            client = EC2Client(logger)
+            assert client.ec2
+            del client
+        except:
+            assert False
+
     def test_get_data_from_region(self, region=DEFAULT_REGION):
         """
         Tests if the client can obtain information from a region
